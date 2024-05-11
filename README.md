@@ -1,7 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 
-![Project Image](https://github.com/joschan21/casecobra/blob/master/public/thumbnail.png)
+![Project Image](https://github.com/joschan21/casecobra/blob/master/public/thumbnail1.png)
 ## Features
 - Sử dụng NextJs 14
 - UI sử dụng Tailwind
