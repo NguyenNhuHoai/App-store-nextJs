@@ -1,5 +1,5 @@
 "use client";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+
 import React, { useRef, useState } from "react";
 import NextImage from "next/image";
 import { cn, formatPrice } from "@/lib/utils";
@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, ChevronsUpDown } from "lucide-react";
-import { BASE_PRIICE } from "@/config/product";
+import { BASE_PRICE } from "@/config/product";
 import { useUploadThing } from "@/lib/uploadthing";
 import { useToast } from "@/components/ui/use-toast";
 import { useMutation } from "@tanstack/react-query";
@@ -31,6 +31,7 @@ import {
   SaveConfigArgs,
 } from "@/app/configure/design/action";
 import { useRouter } from "next/navigation";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface DesignConfiguratorProps {
   configId: string;
@@ -44,8 +45,8 @@ const DesignConfigurator = ({
   imageDemensions,
 }: DesignConfiguratorProps) => {
   const { toast } = useToast();
-  const router = useRouter()
-  const { mutate: saveConfig } = useMutation({
+  const router = useRouter();
+  const { mutate: saveConfig, isPending } = useMutation({
     mutationKey: ["save-config"],
     mutationFn: async (args: SaveConfigArgs) => {
       await Promise.all([saveConfiguration(), _saveConfig(args)]);
@@ -57,9 +58,9 @@ const DesignConfigurator = ({
         variant: "destructive",
       });
     },
-    onSuccess:()=>{
-      router.push(`/configure/preview?id=${configId}`)
-    }
+    onSuccess: () => {
+      router.push(`/configure/preview?id=${configId}`);
+    },
   });
 
   const [options, setOptions] = useState<{
@@ -155,6 +156,7 @@ const DesignConfigurator = ({
       >
         <div className="relative w-60 bg-opacity-50 pointer-events-none aspect-[896/1831]">
           <AspectRatio
+            // @ts-ignore
             ref={phoneCaseRef}
             ratio={896 / 1831}
             className="pointer-events-none relative z-50 aspect-[896/1831] w-full"
@@ -162,7 +164,7 @@ const DesignConfigurator = ({
             <NextImage
               fill
               alt="phone image"
-              src={"/phone-template.png"}
+              src="/phone-template.png"
               className="pointer-events-none z-50 select-none"
             />
           </AspectRatio>
@@ -376,20 +378,23 @@ const DesignConfigurator = ({
             <div className="w-full flex gap-6 items-center">
               <p className="font-medium whitespace-nowrap">
                 {formatPrice(
-                  (BASE_PRIICE +
-                    options.finish.price +
-                    options.material.price) /
+                  (BASE_PRICE + options.finish.price + options.material.price) /
                     100
                 )}
               </p>
               <Button
-                onClick={() => saveConfig({
-                  configId,
-                  color:options.color.value,
-                  finish: options.finish.value,
-                  material: options.material.value,
-                  model: options.model.value
-                })}
+                isLoading={isPending}
+                disabled={isPending}
+                loadingText="Saving"
+                onClick={() =>
+                  saveConfig({
+                    configId,
+                    color: options.color.value,
+                    finish: options.finish.value,
+                    material: options.material.value,
+                    model: options.model.value,
+                  })
+                }
                 size="sm"
                 className="w-full"
               >
