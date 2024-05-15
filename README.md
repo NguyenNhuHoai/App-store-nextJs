@@ -1,22 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-
-![Project Image](https://github.com/joschan21/casecobra/blob/master/public/thumbnail.png)
-## Features
-- Sử dụng NextJs 14
-- UI sử dụng Tailwind
-- Dùng kinde để xử lý xác thực người dùng
-- Giao diện có animation
-- Dùng typescript để xử lý
-
+# Dự án website kinh doanh và thiết kế điện thoại sử dụng NEXTJS 14
+![Logo](https://i.imgur.com/1StuFOM.png)
+## Thông tin về dự án
+- Dự án kinh doanh và thiết kế điện thoại
+- Cho phép người mua thanh thoán bằng paypal
+- Người dùng có thể chèn ảnh vào mặt sau của điện thoại
+- Chọn điện thoại ở đây là các loại iphone
+- Người dùng có thể đăng nhập bằng gmail hoặc facebook
+- Đây là dự án thứ 2 của tôi trong quá trình học NextJs
 
 
 ## Công nghê sử dụng
-
-To get started with this project, run
-
-```bash
-  git clone https://github.com/NguyenNhuHoai/BudgetApp-NextJs.git
-```
-
-and copy the .env.example variables into a separate .env file, fill them out & and that's all you need to get started!
+_ TypeScript
+- Stripe dùng để thanh toán online
+- Resend dùng để gửi email
+- Kinde dùng để hỗ trợ việc quản lý và xác thực người dùng
+### Back end:
+- Prisma
+- Uploadthing
+### Front end
+- UseQuery
+- Sharp
+- Tailwind
+- Lucide
