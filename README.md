@@ -11,7 +11,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 
 
-## Getting Started
+## Công nghê sử dụng
 
 To get started with this project, run
 
